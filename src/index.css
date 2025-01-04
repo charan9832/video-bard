@@ -5,15 +5,15 @@
 @tailwind utilities;
 
 body {
-  @apply bg-[#0A0A0A] text-white font-sans;
+  @apply bg-[#1A1A2E] text-white font-sans;
 }
 
 .gradient-bg {
-  background: radial-gradient(circle at top center, rgba(37, 99, 235, 0.1) 0%, rgba(124, 58, 237, 0.1) 50%, transparent 100%);
+  background: radial-gradient(circle at top center, rgba(139, 92, 246, 0.15) 0%, rgba(249, 115, 22, 0.15) 50%, transparent 100%);
 }
 
 .glass-card {
-  background: rgba(255, 255, 255, 0.05);
+  background: rgba(255, 255, 255, 0.07);
   backdrop-filter: blur(10px);
   border: 1px solid rgba(255, 255, 255, 0.1);
 }
