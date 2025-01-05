@@ -7,9 +7,10 @@ import { useToast } from "@/components/ui/use-toast";
 interface AuthDialogProps {
   isOpen: boolean;
   onClose: () => void;
+  onSuccess: () => void;
 }
 
-export const AuthDialog = ({ isOpen, onClose }: AuthDialogProps) => {
+export const AuthDialog = ({ isOpen, onClose, onSuccess }: AuthDialogProps) => {
   const [isLogin, setIsLogin] = useState(true);
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -22,7 +23,7 @@ export const AuthDialog = ({ isOpen, onClose }: AuthDialogProps) => {
       title: isLogin ? "Login Successful" : "Sign up Successful",
       description: "Welcome to our platform!",
     });
-    onClose();
+    onSuccess();
   };
 
   return (
