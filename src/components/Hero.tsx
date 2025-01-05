@@ -1,7 +1,11 @@
+import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { ArrowRight } from "lucide-react";
+import { AuthDialog } from "./AuthDialog";
 
 export const Hero = () => {
+  const [showAuthDialog, setShowAuthDialog] = useState(false);
+
   return (
     <div className="relative min-h-[80vh] flex items-center justify-center gradient-bg">
       <div className="container mx-auto px-4 py-32 text-center">
@@ -13,7 +17,7 @@ export const Hero = () => {
           Transform your ideas into engaging content across platforms with our AI-powered creation suite
         </p>
         <div className="flex gap-4 justify-center animate-fade-up">
-          <Button size="lg" className="bg-primary hover:bg-primary/90">
+          <Button size="lg" className="bg-primary hover:bg-primary/90" onClick={() => setShowAuthDialog(true)}>
             Get Started <ArrowRight className="ml-2 h-4 w-4" />
           </Button>
           <Button size="lg" variant="outline">
@@ -21,6 +25,7 @@ export const Hero = () => {
           </Button>
         </div>
       </div>
+      <AuthDialog isOpen={showAuthDialog} onClose={() => setShowAuthDialog(false)} />
     </div>
   );
 };
