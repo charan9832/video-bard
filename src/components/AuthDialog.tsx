@@ -1,8 +1,7 @@
 import { useState } from "react";
-import { Dialog, DialogContent, DialogHeader, DialogTitle } from "@/components/ui/dialog";
+import { Dialog, DialogContent } from "@/components/ui/dialog";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
-import { Label } from "@/components/ui/label";
 import { useToast } from "@/components/ui/use-toast";
 
 interface AuthDialogProps {
@@ -28,13 +27,32 @@ export const AuthDialog = ({ isOpen, onClose }: AuthDialogProps) => {
 
   return (
     <Dialog open={isOpen} onOpenChange={onClose}>
-      <DialogContent className="sm:max-w-[425px]">
-        <DialogHeader>
-          <DialogTitle>{isLogin ? "Login" : "Sign Up"}</DialogTitle>
-        </DialogHeader>
-        <form onSubmit={handleSubmit} className="space-y-4 mt-4">
+      <DialogContent className="sm:max-w-[400px] p-8 glass-card">
+        <div className="flex flex-col items-center mb-6">
+          <div className="w-12 h-12 bg-primary/20 rounded-full flex items-center justify-center mb-4">
+            <svg
+              className="w-6 h-6 text-primary"
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24"
+            >
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeWidth={2}
+                d="M12 4v16m8-8H4"
+              />
+            </svg>
+          </div>
+          <h2 className="text-xl font-semibold mb-1">
+            {isLogin ? "Sign in to Platform" : "Create your account"}
+          </h2>
+        </div>
+        <form onSubmit={handleSubmit} className="space-y-4">
           <div className="space-y-2">
-            <Label htmlFor="email">Email</Label>
+            <label htmlFor="email" className="text-sm font-medium block">
+              Email address
+            </label>
             <Input
               id="email"
               type="email"
@@ -42,10 +60,29 @@ export const AuthDialog = ({ isOpen, onClose }: AuthDialogProps) => {
               value={email}
               onChange={(e) => setEmail(e.target.value)}
               required
+              className="w-full bg-background/50"
             />
           </div>
           <div className="space-y-2">
-            <Label htmlFor="password">Password</Label>
+            <div className="flex justify-between items-center">
+              <label htmlFor="password" className="text-sm font-medium">
+                Password
+              </label>
+              {isLogin && (
+                <button
+                  type="button"
+                  className="text-sm text-primary hover:underline"
+                  onClick={() => {
+                    toast({
+                      title: "Reset password",
+                      description: "Password reset functionality coming soon!",
+                    });
+                  }}
+                >
+                  Forgot password?
+                </button>
+              )}
+            </div>
             <Input
               id="password"
               type="password"
@@ -53,20 +90,29 @@ export const AuthDialog = ({ isOpen, onClose }: AuthDialogProps) => {
               value={password}
               onChange={(e) => setPassword(e.target.value)}
               required
+              className="w-full bg-background/50"
             />
           </div>
-          <Button type="submit" className="w-full">
-            {isLogin ? "Login" : "Sign Up"}
+          <Button type="submit" className="w-full bg-primary hover:bg-primary/90">
+            {isLogin ? "Sign in" : "Sign up"}
           </Button>
-          <div className="text-center text-sm">
+          <div className="pt-4 text-center space-y-4">
+            <div className="relative">
+              <div className="absolute inset-0 flex items-center">
+                <div className="w-full border-t border-gray-700"></div>
+              </div>
+              <div className="relative flex justify-center text-sm">
+                <span className="px-2 bg-[#1A1A2E] text-gray-400">
+                  {isLogin ? "New to platform?" : "Already have an account?"}
+                </span>
+              </div>
+            </div>
             <button
               type="button"
               onClick={() => setIsLogin(!isLogin)}
-              className="text-primary hover:underline"
+              className="text-primary hover:text-primary/90 text-sm"
             >
-              {isLogin
-                ? "Don't have an account? Sign up"
-                : "Already have an account? Login"}
+              {isLogin ? "Create an account" : "Sign in"}
             </button>
           </div>
         </form>
