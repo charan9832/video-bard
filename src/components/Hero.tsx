@@ -3,7 +3,11 @@ import { Button } from "@/components/ui/button";
 import { ArrowRight } from "lucide-react";
 import { AuthDialog } from "./AuthDialog";
 
-export const Hero = () => {
+interface HeroProps {
+  onGetStarted: () => void;
+}
+
+export const Hero = ({ onGetStarted }: HeroProps) => {
   const [showAuthDialog, setShowAuthDialog] = useState(false);
 
   return (
@@ -17,7 +21,7 @@ export const Hero = () => {
           Transform your ideas into engaging content across platforms with our AI-powered creation suite
         </p>
         <div className="flex gap-4 justify-center animate-fade-up">
-          <Button size="lg" className="bg-primary hover:bg-primary/90" onClick={() => setShowAuthDialog(true)}>
+          <Button size="lg" className="bg-primary hover:bg-primary/90" onClick={onGetStarted}>
             Get Started <ArrowRight className="ml-2 h-4 w-4" />
           </Button>
           <Button size="lg" variant="outline">
@@ -25,7 +29,11 @@ export const Hero = () => {
           </Button>
         </div>
       </div>
-      <AuthDialog isOpen={showAuthDialog} onClose={() => setShowAuthDialog(false)} />
+      <AuthDialog 
+        isOpen={showAuthDialog} 
+        onClose={() => setShowAuthDialog(false)}
+        onSuccess={onGetStarted}
+      />
     </div>
   );
 };
