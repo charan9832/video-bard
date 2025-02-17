@@ -1,3 +1,4 @@
+
 import { useState } from "react";
 import { Hero } from "@/components/Hero";
 import { Features } from "@/components/Features";
@@ -6,6 +7,7 @@ import { Pricing } from "@/components/Pricing";
 import { Footer } from "@/components/Footer";
 import { AuthDialog } from "@/components/AuthDialog";
 import { ScriptCreator } from "@/components/ScriptCreator";
+import { Header } from "@/components/Header";
 
 const Index = () => {
   const [isAuthOpen, setIsAuthOpen] = useState(false);
@@ -17,12 +19,24 @@ const Index = () => {
     setIsAuthOpen(false);
   };
 
+  const handleSignOut = () => {
+    setIsAuthenticated(false);
+  };
+
   if (isAuthenticated) {
-    return <ScriptCreator />;
+    return (
+      <>
+        <Header isAuthenticated={isAuthenticated} onSignOut={handleSignOut} />
+        <div className="pt-16">
+          <ScriptCreator />
+        </div>
+      </>
+    );
   }
 
   return (
     <div className="min-h-screen">
+      <Header isAuthenticated={isAuthenticated} />
       <Hero onGetStarted={() => setIsAuthOpen(true)} />
       <Features />
       <HowItWorks />
