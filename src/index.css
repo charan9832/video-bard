@@ -1,3 +1,4 @@
+
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
 
 @tailwind base;
@@ -21,4 +22,12 @@ body {
 .feature-card:hover {
   transform: translateY(-5px);
   transition: transform 0.3s ease;
+}
+
+.text-gradient {
+  @apply bg-gradient-to-r from-primary via-secondary to-accent bg-clip-text text-transparent;
+}
+
+.neo-blur {
+  @apply backdrop-blur-2xl bg-black/40 border border-white/10;
 }

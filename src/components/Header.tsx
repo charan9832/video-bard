@@ -1,5 +1,5 @@
 
-import { Home, User, FileText, Settings } from "lucide-react";
+import { Home, User, FileText, Settings, Video, BarChart, Calendar, Share2 } from "lucide-react";
 import { NavBar } from "@/components/ui/tubelight-navbar";
 import { Button } from "@/components/ui/button";
 
@@ -10,16 +10,19 @@ interface HeaderProps {
 
 export const Header = ({ isAuthenticated, onSignOut }: HeaderProps) => {
   const authenticatedNavItems = [
-    { name: 'Home', url: '/', icon: Home },
-    { name: 'Profile', url: '/profile', icon: User },
+    { name: 'Dashboard', url: '/dashboard', icon: Home },
     { name: 'Scripts', url: '/scripts', icon: FileText },
+    { name: 'Videos', url: '/videos', icon: Video },
+    { name: 'Analytics', url: '/analytics', icon: BarChart },
+    { name: 'Schedule', url: '/schedule', icon: Calendar },
+    { name: 'Share', url: '/share', icon: Share2 },
     { name: 'Settings', url: '/settings', icon: Settings }
   ];
 
   const publicNavItems = [
     { name: 'Home', url: '/', icon: Home },
     { name: 'Features', url: '#features', icon: FileText },
-    { name: 'How it Works', url: '#how-it-works', icon: User }
+    { name: 'Pricing', url: '#pricing', icon: BarChart }
   ];
 
   return (
@@ -27,7 +30,7 @@ export const Header = ({ isAuthenticated, onSignOut }: HeaderProps) => {
       <div className="container mx-auto px-4 flex justify-between items-center h-16">
         <div className="flex items-center">
           <a href="/" className="flex items-center space-x-2">
-            <span className="text-2xl font-bold bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent">
+            <span className="text-2xl font-bold text-gradient">
               VideoBard
             </span>
           </a>
